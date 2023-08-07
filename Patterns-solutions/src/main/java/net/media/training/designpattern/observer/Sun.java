@@ -1,5 +1,7 @@
 package net.media.training.designpattern.observer;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User: joelrosario
@@ -9,16 +11,36 @@ package net.media.training.designpattern.observer;
  */
 public class Sun {
     private boolean isUp;
-    private final Robot robot;
-    private final Person person;
-    private final Dog dog;
-    private final Cat cat;
+    // private final Robot robot;
+    // private final Person person;
+    // private final Dog dog;
+    // private final Cat cat;
+    private List<CharacterObserver> observers;
 
-    public Sun(Robot robot, Person person, Dog dog, Cat cat) {
-        this.robot = robot;
-        this.person = person;
-        this.dog = dog;
-        this.cat = cat;
+    // public Sun(Robot robot, Person person, Dog dog, Cat cat) {
+    // this.robot = robot;
+    // this.person = person;
+    // this.dog = dog;s
+    // this.cat = cat;
+    // }
+
+    public void addObserver(CharacterObserver observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(CharacterObserver observer) {
+        observers.remove(observer);
+    }
+
+    private void notifyObservers(boolean isSunRisen) {
+        for (CharacterObserver observer : observers) {
+            if (observer.isOutdoors()) {
+                if (isSunRisen)
+                    observer.notifySunRose();
+                else
+                    observer.notifySunSet();
+            }
+        }
     }
 
     public boolean isUp() {
@@ -27,41 +49,11 @@ public class Sun {
 
     public void set() {
         isUp = false;
-
-        if (robot.isOutdoors()) {
-            robot.notifySunSet();
-        }
-
-        if (person.isOutdoors()) {
-            person.notifySunSet();
-        }
-
-        if (dog.isOutdoors()) {
-            dog.notifySunSet();
-        }
-
-        if (cat.isOutdoors()) {
-            cat.notifySunSet();
-        }
+        notifyObservers(false);
     }
 
     public void rise() {
         isUp = true;
-
-        if (robot.isOutdoors()) {
-            robot.notifySunRose();
-        }
-
-        if (person.isOutdoors()) {
-            person.notifySunRose();
-        }
-
-        if (dog.isOutdoors()) {
-            dog.notifySunRose();
-        }
-
-        if (cat.isOutdoors()) {
-            cat.notifySunRose();
-        }
+        notifyObservers(true);
     }
 }

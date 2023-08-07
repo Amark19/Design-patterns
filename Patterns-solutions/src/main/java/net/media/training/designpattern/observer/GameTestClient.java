@@ -13,8 +13,7 @@ public class GameTestClient {
         dog = new Dog();
         cat = new Cat();
         robot = new Robot();
-
-        sun = new Sun(robot, person, dog, cat);
+        sun = new Sun();
         game = new Game(sun);
     }
 
