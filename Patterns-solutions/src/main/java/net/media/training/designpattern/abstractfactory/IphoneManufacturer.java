@@ -1,6 +1,6 @@
 package net.media.training.designpattern.abstractfactory;
 
-public class IphoneManufacturer extends PhoneMaker{
+public class IphoneManufacturer extends PhoneFactory{
     Case phoneCase;
     public MotherBoard buildMotherBoard() {
         MotherBoard motherBoard = new IphoneMotherBoard();

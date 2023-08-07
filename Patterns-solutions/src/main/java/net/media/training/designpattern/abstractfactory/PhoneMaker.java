@@ -7,41 +7,15 @@ package net.media.training.designpattern.abstractfactory;
  * Time: 6:34:34 PM
  * To change this template use File | Settings | File Templates.
  */
-public abstract class PhoneMaker {
+public class PhoneMaker {
 
-
-    public abstract MotherBoard buildMotherBoard();
-    public abstract Screen buildScreen();
-    public abstract Battery somBattery();
-    public abstract Case buildCase();
-
-    // public Case buildPhone(String phoneType) {
-    //     MotherBoard motherBoard;
-    //     if (phoneType.equals("Android")) {
-    //         motherBoard = new AndroidMotherBoard();
-    //         motherBoard.attachBattery(new Battery());
-    //         motherBoard.attachProcessor(new AndroidProcessor());
-    //     } else {
-    //         motherBoard = new IphoneMotherBoard();
-    //         motherBoard.attachBattery(new Battery());
-    //         motherBoard.attachProcessor(new IphoneProcessor());
-    //     }
-
-    //     Screen screen;
-    //     if (phoneType.equals("Android")) {
-    //         screen = new AndroidScreen();
-    //     } else {
-    //         screen = new IphoneScreen();
-    //     }
-
-    //     Case phoneCase;
-    //     if (phoneType.equals("Android")) {
-    //         phoneCase = new AndroidCase();
-    //     } else {
-    //         phoneCase = new IphoneCase();
-    //     }
-    //     phoneCase.attachMotherBoard(motherBoard);
-    //     phoneCase.attachScreen(screen);
-    //     return phoneCase;
-    // }
+    public Case buildPhone(String phoneType) {
+        PhoneFactory phoneFactory;
+        if (phoneType.equals("Android")) {
+            phoneFactory = new AndroidManufacturer();
+        } else {
+            phoneFactory = new IphoneManufacturer();
+        }
+        return phoneFactory.buildCase();
+    }
 }

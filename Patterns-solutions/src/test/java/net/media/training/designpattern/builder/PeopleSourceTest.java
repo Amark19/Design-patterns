@@ -16,25 +16,15 @@ import static org.junit.Assert.assertEquals;
  */
 public class PeopleSourceTest {
 
-    @Test
-    public void TestPeopleXml() {
-        List<Person> persons = new ArrayList<Person>();
-        persons.add(new PersonBuilder().name("Wu").id(25)
-                .city("Shanghai")
-                .country("China")
-                .build());
-        persons.add(new PersonBuilder().name("Kobayashi").id(200)
-                .city("Kanto")
-                .country("Japan")
-                .build());
-        persons.add(new PersonBuilder().name("Vasily").id(1)
-                .city("Leningrad")
-                .country("Russia")
-                .build());
-        String actual = PeopleDataSource.getPeopleXml(persons);
+        @Test
+        public void TestPeopleXml() {
+                List<Person> persons = new ArrayList<Person>();
+                persons.add(new Person("Wu", 25, "Shanghai", "China"));
+                persons.add(new Person("Kobayashi", 200, "Kanto", "Japan"));
+                persons.add(new Person("Vasily", 1, "Leningrad", "Russia"));
+                String actual = PeopleDataSource.getPeopleXml(persons);
 
-        assertEquals(
-                "<?xml version=\"1.0\" encoding=\"UTF-8\"?><People number=\"3\"><Person id=\"25\" name=\"Wu\"><Address><City>Shanghai</City><Country>China</Country></Address></Person><Person id=\"200\" name=\"Kobayashi\"><Address><City>Kanto</City><Country>Japan</Country></Address></Person><Person id=\"1\" name=\"Vasily\"><Address><City>Leningrad</City><Country>Russia</Country></Address></Person></People>",
-                actual);
-    }
+                assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\"?><People number=\"3\"><Person id=\"25\" name=\"Wu\"><Address><City>Shanghai</City><Country>China</Country></Address></Person><Person id=\"200\" name=\"Kobayashi\"><Address><City>Kanto</City><Country>Japan</Country></Address></Person><Person id=\"1\" name=\"Vasily\"><Address><City>Leningrad</City><Country>Russia</Country></Address></Person></People>",
+                                actual);
+        }
 }

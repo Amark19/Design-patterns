@@ -1,6 +1,6 @@
 package net.media.training.designpattern.abstractfactory;
 
-public class AndroidManufacturer extends PhoneMaker {
+public class AndroidManufacturer extends PhoneFactory {
     Case phoneCase;
 
     public MotherBoard buildMotherBoard() {

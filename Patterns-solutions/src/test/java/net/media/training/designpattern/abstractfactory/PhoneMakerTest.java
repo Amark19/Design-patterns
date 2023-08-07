@@ -15,26 +15,14 @@ public class PhoneMakerTest {
 
     @Test
     public void AndroidPhoneIsMadeCorrectly() {
-        PhoneMaker androidManufacturer = new AndroidManufacturer();
-        Case phone = androidManufacturer.buildCase();
-
-        // assertEquals(AndroidCase.class, phone.getClass());
-        // assertEquals(AndroidScreen.class, phone.getScreen().getClass());
-        // assertEquals(AndroidMotherBoard.class, phone.getMotherBoard().getClass());
-        // assertEquals(AndroidProcessor.class, phone.getProcessor().getClass());
-        // assertEquals(Battery.class, phone.getBattery().getClass());
+        PhoneMaker phone = new PhoneMaker() ;
+        phone.buildPhone("Android");
     }
-
+    
     @Test
     public void IPhoneIsMadeCorrectly() {
-        PhoneMaker iphoneManufacturer = new IphoneManufacturer();
-        Case phone = iphoneManufacturer.buildCase();
-
-        // assertEquals(IphoneCase.class, phone.getClass());
-        // assertEquals(IphoneScreen.class, phone.getScreen().getClass());
-        // assertEquals(IphoneMotherBoard.class, phone.getMotherBoard().getClass());
-        // assertEquals(IphoneProcessor.class, phone.getProcessor().getClass());
-        // assertEquals(Battery.class, phone.getBattery().getClass());
+        PhoneMaker phone = new PhoneMaker() ;
+        phone.buildPhone("Iphone");
     }
 }
 
