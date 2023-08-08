@@ -7,7 +7,7 @@ package net.media.training.designpattern.composite;
  * Time: 9:18:04 PM
  * To change this template use pre_refactoring.File | Settings | pre_refactoring.File Templates.
  */
-public class File {
+public class File implements FileSystem{
     private final String name;
     private int size;
     private Directory parent;
@@ -20,16 +20,31 @@ public class File {
     public void setParent(Directory parent) {
         this.parent = parent;
     }
+    public Directory getParent(){
+        return parent;
+    }
 
+    
     public String getName() {
         return name;
     }
-
     public int getSize() {
         return size;
     }
-
-    public Directory getParent() {
-        return parent;
+    public boolean exists(String name) {
+        return this.name.equals(name);
     }
+    
+
+
+    // public int getSize() {
+    //     return size;
+    // }
+
+    // public ListDirectories getParent() {
+    //     return parent;
+    // }
+    // public void removeEntry(ListDirectories file) {
+    //     files.remove(file);
+    // }
 }
