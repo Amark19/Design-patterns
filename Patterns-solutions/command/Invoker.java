@@ -5,24 +5,21 @@ import java.util.List;
 
 public class Invoker {
     private final List<Command> commands = new ArrayList<>();
+    private Command command;
 
     public void SetCommand(Command command) {
-        commands.add(command);
+        this.command = command;
     }
 
     public void invokeExecution() {
-
-        for (Command command : commands) {
-            command.execute();
-        }
+        command.execute();
+        commands.add(command);
     }
 
-    //function which can undo execution of that command which failed
     public void undoExecution() {
         for (int i = commands.size() - 1; i >= 0; i--) {
             commands.get(i).undo();
         }
     }
-    
 
 }

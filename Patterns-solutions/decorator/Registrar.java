@@ -9,7 +9,7 @@ package net.media.training.designpattern.decorator;
  * To change this template use File | Settings | File Templates.
  */
 public class Registrar {
-
+    
     public boolean evaluate(Application theApp, Criteria criteria) {
         return criteria.evaluate(theApp);
     }

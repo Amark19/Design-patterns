@@ -18,23 +18,31 @@ public class HelloWorldManipulator {
         Invoker invoker = new Invoker();
         try {
             invoker.SetCommand(new Create(fileName, "hello world"));
+            invoker.invokeExecution();
             invoker.SetCommand(new Update(fileName, "new hello world"));
+            invoker.invokeExecution();
             invoker.SetCommand(new Move(fileName, newPath));
             invoker.invokeExecution();
         } catch (Exception e) {
+            invoker.undoExecution();
         }
     }
-
+    
     public void brokenManipulate(String fileName, String newPath) {
         Invoker invoker = new Invoker();
         try {
             invoker.SetCommand(new Create(fileName, "hello world"));
+            invoker.invokeExecution();
             invoker.SetCommand(new Update(fileName, "new hello world"));
+            invoker.invokeExecution();
             invoker.SetCommand(new Move(fileName, newPath));
+            invoker.invokeExecution();
             invoker.SetCommand(new Create(fileName, "hello world"));
+            invoker.invokeExecution();
             invoker.SetCommand(new Create(fileName, "hello world"));
             invoker.invokeExecution();
         } catch (Exception e) {
+            invoker.undoExecution();
         }
 
     }

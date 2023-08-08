@@ -40,15 +40,26 @@ public class Directory implements FileSystem {
     }
 
     public void delete() {
-        while (contents.size() > 0) {
-            FileSystem content = contents.get(0);
-            content.getParent().contents.remove(content);
+        if (contents instanceof Directory) {
+            while (contents.size() > 0) {
+                FileSystem content = contents.get(0);
+                if (content.size() > 0) {
+                    content.delete();
+                }
+            }
+            contents.remove(this);
+        } else if (contents instanceof File) {
+            contents.remove(this);
         }
 
-        if (parent != null) {
-            parent.contents.remove(this);
-        }
+        // if (parent != null) {
+        //     parent.contents.remove(this);
+        // }
     }
+//             f0
+//         f1        f2
+//     f3      f4
+// file2   
 
     public void add(FileSystem content) {
         contents.add(content);

@@ -14,5 +14,8 @@ public class GRETOEFL extends GPAEval {
         return super.evaluate(theApp)
                 && theApp.getGre() > 1450
                 && theApp.getToefl() > 100;
+                new TOFLDecorator(new GREDecorator(new GPAEval())).evaluate(theApp);
     }
 }
+
+//  new Registerar(new Application(8,3,7),new GRE(new TOFL()),)

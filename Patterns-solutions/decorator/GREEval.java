@@ -7,13 +7,18 @@ package net.media.training.designpattern.decorator;
  * Time: 10:28:33 AM
  * To change this template use File | Settings | File Templates.
  */
-public class GREEval extends GPAEval {
+public class GREEval implements StdEvaluator {
 
-    @Override
+    private Criteria criteria;
+
+    public GREEval(Criteria criteria) {
+        this.criteria = criteria;
+    }
+
     public boolean evaluate(Application theApp) {
         if (super.evaluate(theApp)) {
             System.out.println("GREEval called");
-            return theApp.getGre() > 1450;
+            return theApp.getGre() > 1450 && criteria.evaluate(theApp);
         } else {
             return false;
         }

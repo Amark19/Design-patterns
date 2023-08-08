@@ -13,6 +13,7 @@ import java.util.List;
 public class Calculator {
     private StringBuilder display;
     private Character lastChar;
+    private CalculatorState state;
 
     private List<Character> operators = new ArrayList<Character>() {
         {
@@ -29,9 +30,10 @@ public class Calculator {
         return this.display.toString();
     }
 
-    public Calculator() {
+    public Calculator(CalculatorState state) {
         this.lastChar = null;
         this.display = new StringBuilder();
+        this.state = state;
     }
 
     public boolean isDigit(Character c) {
@@ -54,51 +56,56 @@ public class Calculator {
         return c != null && c.equals('=');
     }
 
+    public String setLastChar(String lastChar) {
+        this.lastChar = lastChar;
+    }
+
     public void input(Character c) {
-        if (isClear(c)) {
-            lastChar = null;
-            clearState();
-            return;
-        }
+        // if (isClear(c)) {
+        //     lastChar = null;
+        //     clearState();
+        //     return;
+        // }
 
-        if (isError())
-            return;
+        // if (isError())
+        //     return;
 
-        if (isEqualsOperator(this.lastChar))
-            return;
+        // if (isEqualsOperator(this.lastChar))
+        //     return;
 
-        if (isDigit(c)) {
-            if (isOperator(lastChar)) {
-                display = new StringBuilder();
-            }
-            lastChar = c;
-            display.append(c);
-            return;
-        }
-        if (isOperator(c)) {
-            if ((lastChar == null) || isOperator(lastChar)) {
-                display = new StringBuilder("Error");
-                return;
-            }
+        // if (isDigit(c)) {
+        //     if (isOperator(lastChar)) {
+        //         display = new StringBuilder();
+        //     }
+        //     lastChar = c;
+        //     display.append(c);
+        //     return;
+        // }
+        // if (isOperator(c)) {
+        //     if ((lastChar == null) || isOperator(lastChar)) {
+        //         display = new StringBuilder("Error");
+        //         return;
+        //     }
 
-            if (isDigit(lastChar)) {
-                updateCurrentValue(Integer.parseInt(display.toString()));
-                updateCurrentOperator(c);
-                lastChar = c;
-            }
-        }
-        if (isEqualsOperator(c)) {
-            if (lastChar == null)
-                return;
+        //     if (isDigit(lastChar)) {
+        //         updateCurrentValue(Integer.parseInt(display.toString()));
+        //         updateCurrentOperator(c);
+        //         lastChar = c;
+        //     }
+        // }
+        // if (isEqualsOperator(c)) {
+        //     if (lastChar == null)
+        //         return;
 
-            if (isOperator(lastChar)) {
-                display = new StringBuilder("Error");
-                return;
-            }
-            if (isDigit(lastChar) && currentValue != null) {
-                updateCurrentValue(Integer.parseInt(display.toString()));
-            }
-        }
+        //     if (isOperator(lastChar)) {
+        //         display = new StringBuilder("Error");
+        //         return;
+        //     }
+        //     if (isDigit(lastChar) && currentValue != null) {
+        //         updateCurrentValue(Integer.parseInt(display.toString()));
+        //     }
+        // }
+            state.input(c);
     }
 
     public void updateCurrentValue(Integer val) {
